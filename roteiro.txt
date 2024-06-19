@@ -1,0 +1,64 @@
+Referencias:
+    - https://medium.com/google-cloud/firebase-developing-a-web-service-with-admin-sdk-flask-and-google-cloud-6fb97eb38b80
+    - https://www.freecodecamp.org/news/how-to-get-started-with-firebase-using-python/
+
+Considerações:
+    - o informação retornada pela API é composta pela seguinte estrutura em JSON:
+        [
+            {
+                DATA,
+                FECHAMENTO
+            },
+            {
+                DATA,
+                FECHAMENTO
+            },
+            ......
+            {
+                DATA,
+                FECHAMENTO
+            }
+        ]
+        O que isso significa? A API retorna uma estrutura do tipo Array de objetos, onde um objeto é formato por uma estrutura contendo um atributo "DATA" e outro "FECHAMENTO"
+    - uma opção seria subir o backend em alguma solução do tipo PaaS (Plataform as a Service) como o Render ou Heroku.
+
+1. Arquitetura de integração:
+    - Percebeu a necessidade de criar uma solução de integração em 3 camadas: Front, Back e Firebase
+    - Passos do desenvolvimento do backend:
+        . criei o diretorio de projeto do backend: mkdir backend
+        . entrar no diretório: cd backend
+        . criar uma venv do projeto: python -m venv venv
+        . subir a minha venv: source bin/activate (*Linux)
+        . instalacao das dependencias: pip install flask firebase_admin
+        . definicao da variavel que define o caminho da key (private key): export GOOGLE_APPLICATION_CREDENTIALS="/home/cristiano/tmp/testeFirebase/backend/config/Key.json"
+        . para executar o caso de uso:
+            export FLASK_APP=app.py
+            flask run
+
+        . exibir o conteudo do Firebase via API feito em Flask:
+            curl http://localhost:5000/list | jq
+
+    - Passos para o desenvolvimento do Frontend:
+        . criar a aplicação: npx create-react-app --template typescript teste-app
+        . instalar o AXIOS para fazer chamadas a API: yarn add axios
+        . instalar o MUI: yarn add @mui/x-data-grid @mui/material
+
+Subir o projeto:
+    projeto
+        -> frontend
+        -> backend
+
+    git clone <nome_project>
+
+    backend:
+        cd backend
+        python -m venv venv
+        source bin/active
+        pip install -r requirements
+
+
+    frontend:
+        cd frontend
+        yarn install
+        yarn start
+
